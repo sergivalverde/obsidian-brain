@@ -14,55 +14,23 @@ Claude Code skills that turn Claude into a thinking partner for your Obsidian va
 | `/progress [project]` | Create daily progress note |
 | `/weekly-review` | Weekly review of all projects |
 
-## Quick Start
+## Installation
 
-### 1. Install MCP Server
-
-You need the [mcp-obsidian-thinking](https://github.com/username/mcp-obsidian-thinking) MCP server for Obsidian connectivity.
+Copy the `.claude/` folder to your Obsidian vault:
 
 ```bash
-git clone https://github.com/username/mcp-obsidian-thinking.git
-cd mcp-obsidian-thinking
-python3 -m venv .venv
-.venv/bin/pip install -e .
+cd /path/to/your/obsidian-vault
+git clone https://github.com/YOUR_USERNAME/obsidian-brain.git .obsidian-brain
+cp -r .obsidian-brain/.claude .
+rm -rf .obsidian-brain
 ```
 
-### 2. Configure Obsidian
+Or manually:
+1. Download this repo
+2. Copy the `.claude/` folder to the root of your Obsidian vault
+3. Open your vault in Claude Code
 
-Install and enable the [Local REST API plugin](https://github.com/coddingtonbear/obsidian-local-rest-api).
-
-### 3. Configure Claude Code
-
-Add to `~/.claude/settings.json`:
-
-```json
-{
-  "mcpServers": {
-    "mcp-obsidian-thinking": {
-      "command": "/path/to/mcp-obsidian-thinking/.venv/bin/python",
-      "args": ["-m", "mcp_obsidian"],
-      "env": {
-        "OBSIDIAN_MODE": "api",
-        "OBSIDIAN_API_KEY": "your-api-key",
-        "OBSIDIAN_HOST": "127.0.0.1",
-        "OBSIDIAN_PORT": "27124"
-      }
-    }
-  }
-}
-```
-
-### 4. Install Skills
-
-Copy the `.claude/` folder to your project or `~/.claude/skills/` for global use:
-
-```bash
-# Project-level
-cp -r .claude/ /path/to/your/project/
-
-# Global
-cp -r .claude/skills/* ~/.claude/skills/
-```
+That's it! The skills will be available in any Claude Code session in that vault.
 
 ## Usage
 
@@ -132,15 +100,19 @@ When Claude reads a file with `mode: thinking`, it asks questions instead of gen
 ## Structure
 
 ```
-.claude/
-├── CLAUDE.md                    # Persona
-└── skills/
-    ├── catchup/SKILL.md
-    ├── thinking/SKILL.md
-    ├── newproject/SKILL.md
-    ├── progress/SKILL.md
-    ├── weekly-review/SKILL.md
-    └── research-context/SKILL.md  # Auto-loads for context
+your-obsidian-vault/
+├── .claude/
+│   ├── CLAUDE.md                    # Thinking partner persona
+│   └── skills/
+│       ├── catchup/SKILL.md
+│       ├── thinking/SKILL.md
+│       ├── newproject/SKILL.md
+│       ├── progress/SKILL.md
+│       ├── weekly-review/SKILL.md
+│       └── research-context/SKILL.md
+├── Projects/                        # Your research projects
+├── Research/                        # Reference materials
+└── ... your other vault files
 ```
 
 ## Credits
