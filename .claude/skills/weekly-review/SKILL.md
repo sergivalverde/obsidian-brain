@@ -109,9 +109,21 @@ Ask the user:
 
 If yes, use `obsidian_put_content` to create the review note.
 
-## Step 7: Follow-up Questions
+## Step 7: Offer Visualization
 
-After presenting the review, offer:
+After presenting the text review, offer to create visual overview:
+
+> "Would you like me to create a visual dashboard of your projects?
+> I can use `/visualize` to create a canvas showing:
+> - Projects arranged by status
+> - Connections between related work
+> - Visual overview of your research landscape"
+
+If user agrees, invoke the visualize skill with "all projects" context.
+
+## Step 8: Follow-up Questions
+
+After presenting the review (and optional visualization), offer:
 - "Would you like to dive deeper into any project?"
 - "Should we archive any of the inactive projects?"
 - "Want to set specific goals for next week?"

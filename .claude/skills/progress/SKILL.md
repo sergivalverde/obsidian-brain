@@ -60,7 +60,20 @@ If you have context from the current conversation, offer to populate the note:
 
 If user agrees, use `obsidian_append_content` to add the sections.
 
-## Step 5: Review Together
+## Step 5: Format (Optional)
+
+After creating the progress note, offer to enhance formatting:
+
+> "Would you like me to format this progress note with:
+> - Callouts for key insights
+> - Proper wikilinks to related notes
+> - Tags for discovery
+>
+> I can use `/format` to enhance the formatting."
+
+If user agrees, invoke the format skill to apply rich Obsidian syntax.
+
+## Step 6: Review Together
 
 Read back the created/updated note and ask:
 > "Here's today's progress note. Anything you'd like to add or change?"
