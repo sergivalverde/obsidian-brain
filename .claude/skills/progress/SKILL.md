@@ -16,7 +16,7 @@ Help the user create or update a daily progress note for their project.
 ## Step 1: Identify Project
 
 If `$ARGUMENTS` is empty:
-1. Use `obsidian_folder_progress` on `Projects/` with `days_back: 7` to find recent activity
+1. Use Bash to find recently modified projects (past 7 days)
 2. Show the user their recent projects and ask which one to create progress for
 
 Example prompt:
@@ -38,14 +38,10 @@ If exists, ask:
 
 ## Step 3: Create Progress Note
 
-Use the MCP `obsidian_create_daily_progress` tool:
+Use Write tool to create the file at:
+`/Users/tensor/Documents/SV/Projects/<project-name>/Daily Progress/daily_progress_YYYY_MM_DD.md`
 
-```json
-{
-  "project_path": "Projects/<project-name>",
-  "date": "<today in YYYY-MM-DD format>"
-}
-```
+Use the template format below.
 
 ## Step 4: Populate from Session
 
@@ -58,7 +54,7 @@ If you have context from the current conversation, offer to populate the note:
 >
 > Would you like me to add these to the progress note?"
 
-If user agrees, use `obsidian_append_content` to add the sections.
+If user agrees, use Edit tool to add the sections to the existing file.
 
 ## Step 5: Format (Optional)
 

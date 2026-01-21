@@ -23,23 +23,17 @@ If project specified:
 
 ## Step 2: Gather Recent Changes
 
-Use the MCP `obsidian_folder_progress` tool:
+Use Bash to find recently modified files:
 
-```
-{
-  "folder_path": "<determined folder>",
-  "days_back": <days from args or 3>,
-  "include_content": true
-}
+```bash
+# For a specific project
+find /Users/tensor/Documents/SV/Projects/<project-name> -type f -mtime -<days> -name "*.md"
+
+# For the whole vault
+find /Users/tensor/Documents/SV -type f -mtime -<days> -name "*.md"
 ```
 
-If looking at the whole vault, use `obsidian_get_recent_changes`:
-```
-{
-  "days": <days from args or 3>,
-  "limit": 20
-}
-```
+Then use Read tool to read the content of changed files.
 
 ## Step 3: Analyze Changes
 

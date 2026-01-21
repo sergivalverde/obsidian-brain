@@ -10,12 +10,13 @@ This skill provides background context about how the user organizes their Obsidi
 
 ## Vault Structure
 
-The user's Obsidian vault follows this organization:
+The user's Obsidian vault is located at `/Users/tensor/Documents/SV/` and follows this organization:
 
 - `Projects/` - Active research and work projects
 - `Resources/` - Reference materials and clippings
 - `Areas/` - Ongoing responsibility areas (PARA method)
 - `Archives/` - Completed or paused items
+- `Reviews/` - Weekly and periodic reviews
 
 ## Project Structure
 
@@ -45,10 +46,10 @@ Key frontmatter fields used in the vault:
 ## Thinking Mode Behavior
 
 When files have `mode: thinking` in frontmatter:
-- The MCP server injects a warning banner
 - Claude should NOT create content
 - Claude should ask questions and help explore ideas
 - Focus on understanding, not producing
+- Use the `/thinking` skill explicitly if needed
 
 ## Date and Link Conventions
 
@@ -57,38 +58,34 @@ When files have `mode: thinking` in frontmatter:
 - **Internal links**: Prefer wiki-links `[[note name]]` over markdown links
 - **Project references**: Use wiki-links in frontmatter `project: [[Project Name]]`
 
-## MCP Tools Available
+## File Tools Available
 
-The `mcp-obsidian-thinking` server provides these tools:
+Claude Code provides direct file access:
 
 ### File Operations
-- `obsidian_list_files_in_vault` - List root directory
-- `obsidian_list_files_in_dir` - List specific directory
-- `obsidian_get_file_contents` - Read file (includes frontmatter instruction injection)
-- `obsidian_batch_get_file_contents` - Read multiple files
-- `obsidian_simple_search` - Text search
-- `obsidian_complex_search` - Advanced search with filters
-- `obsidian_put_content` - Write/overwrite file
-- `obsidian_append_content` - Append to file
-- `obsidian_patch_content` - Insert at position
-- `obsidian_delete_file` - Delete file
+- **Read** - Read file contents
+- **Write** - Create or overwrite files
+- **Edit** - Make targeted edits to existing files
+- **Glob** - Find files by pattern (e.g., `vault/Projects/*/index.md`)
+- **Grep** - Search content across files (supports regex, tags, etc.)
+- **Bash** - Run commands for file listings, git operations, etc.
 
-### Metadata Operations
-- `obsidian_frontmatter` - Read/update/delete frontmatter
-- `obsidian_tags` - Query tags, find files by tag
-- `obsidian_links` - Extract links from file
-- `obsidian_attachments` - Get attachment info
+### Common Patterns
 
-### Progress Tracking
-- `obsidian_get_recent_changes` - Recently modified files
-- `obsidian_files_by_date` - Files from specific date range
-- `obsidian_folder_progress` - Activity summary for folder
-- `obsidian_get_periodic_note` - Get daily/weekly/monthly note
-- `obsidian_get_recent_periodic_notes` - Recent periodic notes
+**Find recent files:**
+```bash
+find /Users/tensor/Documents/SV/Projects -type f -mtime -7 -name "*.md"
+```
 
-### Project Management
-- `obsidian_create_project` - Create project with template structure
-- `obsidian_create_daily_progress` - Create daily progress note
+**Search for tags:**
+```bash
+grep -r "#tag-name" /Users/tensor/Documents/SV/Projects
+```
+
+**List project directories:**
+```bash
+ls -d /Users/tensor/Documents/SV/Projects/*/
+```
 
 ## Working with Projects
 

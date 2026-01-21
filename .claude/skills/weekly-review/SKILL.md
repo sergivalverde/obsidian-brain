@@ -10,13 +10,10 @@ Conduct a comprehensive weekly review of all active projects.
 
 ## Step 1: Gather All Recent Activity
 
-Use `obsidian_folder_progress` on `Projects/` with:
-```json
-{
-  "folder_path": "Projects",
-  "days_back": 7,
-  "include_content": false
-}
+Use Bash to find recently modified files in the vault's Projects folder:
+
+```bash
+find /Users/tensor/Documents/SV/Projects -type f -mtime -7 -name "*.md" -exec stat -f "%m %N" {} \; | sort -rn
 ```
 
 This gives an overview of activity without loading full content yet.
@@ -32,17 +29,14 @@ From the results, identify:
 For each project with activity:
 
 1. **Read the index.md** to understand current state
-   ```json
-   { "filepath": "Projects/<name>/index.md" }
+   ```
+   Use Read tool: /Users/tensor/Documents/SV/Projects/<name>/index.md
    ```
 
 2. **Read recent Daily Progress notes** to see trajectory
-   ```json
-   {
-     "folder_path": "Projects/<name>/Daily Progress",
-     "days_back": 7,
-     "include_content": true
-   }
+   ```
+   Use Glob: /Users/tensor/Documents/SV/Projects/<name>/Daily Progress/*.md
+   Then Read the most recent files from the past 7 days
    ```
 
 3. **Summarize for this project**:
@@ -107,7 +101,7 @@ Ask the user:
 > "Would you like me to save this as a weekly review note?
 > It would go to: `Reviews/weekly_review_YYYY_MM_DD.md`"
 
-If yes, use `obsidian_put_content` to create the review note.
+If yes, use Write tool to create the review note at `/Users/tensor/Documents/SV/Reviews/weekly_review_YYYY_MM_DD.md`.
 
 ## Step 7: Offer Visualization
 

@@ -24,14 +24,15 @@ If project name provided, confirm and ask for description:
 
 ## Step 2: Create Project Structure
 
-Use the MCP `obsidian_create_project` tool:
+Use Bash to create the directory structure and Write tool to create files:
 
-```json
-{
-  "base_path": "<project-name>",
-  "template": "research_project"
-}
+```bash
+mkdir -p "/Users/tensor/Documents/SV/Projects/<name>/Chats"
+mkdir -p "/Users/tensor/Documents/SV/Projects/<name>/Research"
+mkdir -p "/Users/tensor/Documents/SV/Projects/<name>/Daily Progress"
 ```
+
+Then use Write tool to create the index.md file (see template below).
 
 This creates:
 - `Projects/<name>/index.md` - Main file with thinking mode frontmatter
@@ -47,17 +48,7 @@ After creation, read the index.md and offer to customize:
 2. **Tags**: "What tags should we use for organization? (e.g., #research, #work, #personal)"
 3. **Success Criteria**: "How will you know when this project is complete?"
 
-Update the frontmatter with any additions using `obsidian_frontmatter`:
-```json
-{
-  "filepath": "Projects/<name>/index.md",
-  "operation": "update",
-  "frontmatter": {
-    "tags": ["tag1", "tag2"],
-    "key_questions": ["Question 1?", "Question 2?"]
-  }
-}
-```
+Update the index.md file using the Edit tool to add tags and key questions to the frontmatter.
 
 ## Step 4: Confirm and Suggest Next Steps
 
